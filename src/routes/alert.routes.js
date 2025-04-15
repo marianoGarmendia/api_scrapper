@@ -12,7 +12,7 @@ import {
 } from "../firebase/firebase.config.js";
 import cron from "node-cron";
 // cambiar de lugar esta funcion
-import { getUrl } from "../server";
+import { getUrl } from "../server.js";
 import { scrapping_cars } from "../mapped_cars.js";
 import { tasks } from "./cargaralertas.js";
 import { saveCars } from "./management.vehicles.route.js";
