@@ -12,7 +12,12 @@ import { scrapping_cars } from "./mapped_cars.js";
 import { cargarAlertasYProgramar } from "./routes/cargaralertas.js";
 import { managementVehiclesRouter } from "./routes/management.vehicles.route.js";
 import { alertsRouter } from "./routes/alert.routes.js";
+import {tasks} from "./routes/cargaralertas.js";
 // import { zonaPropRouter } from "./routes/zonaProp.route.js";
+
+console.log("🚀 Iniciando el servidor...");
+console.log("Tasks:", tasks);
+
 
 const PORT = process.env.PORT || 3000;
 

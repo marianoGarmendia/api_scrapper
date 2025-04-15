@@ -20,11 +20,29 @@ export const cargarAlertasYProgramar = async () => {
 
       const cronTime = `${minutos} ${chile_hour} * * *`;
 
+      const executeAlert = shouldRunAlert(hora, minutos) 
+      if(executeAlert){
+        const executeAlertFc = async () => {
+          const cars = await scrapping_cars({ url: urlCars, maxPages: 3 });
+          console.log(`✅ ${cars.length} autos encontrados para '${nombreAlerta}'`);
+          const saves = await saveCars({alertId: alerta.id, vehicles: cars});
+          if (saves) {
+            console.log(`✅ ${saves.length} autos guardados para '${nombreAlerta}'`);
+          }
+          else {
+            console.log(`❌ No se pudieron guardar los autos para '${nombreAlerta}'`);
+          }
+          
+        }
+        executeAlertFc()
+        return
+      }
+      
       console.log(`🕒 Reprogramando alerta '${nombreAlerta}' (${doc.id}) para ${cronTime}`);
-
+      
       const job = cron.schedule(cronTime, async () => {
         console.log(`🚀 Ejecutando alerta '${nombreAlerta}'`);
-
+        
         try {
           const urlCars = await getUrl({
             modelo,
@@ -34,9 +52,9 @@ export const cargarAlertasYProgramar = async () => {
             startYear: yearDesde,
             endYear: yearHasta
           });
-
+          
           const cars = await scrapping_cars({ url: urlCars, maxPages: 3 });
-
+          
           console.log(`✅ ${cars.length} autos encontrados para '${nombreAlerta}'`);
 
           // Opcional: guardar los resultados en la base de datos si querés
@@ -62,3 +80,31 @@ export const cargarAlertasYProgramar = async () => {
     console.error("❌ Error cargando alertas desde la base de datos:", error);
   }
 };
+
+
+// Función que valida si la hora actual está dentro de los 30 minutos previos a la hora programada
+function shouldRunAlert(targetHour, targetMinute) {
+  const now = new Date();
+  console.log("shouldRunAlert ejecutada");
+  
+  console.log(`La hora actual es: ${now.getHours()}:${now.getMinutes()}`);
+  
+  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  const targetMinutes = targetHour * 60 + targetMinute;
+
+  const diff = nowMinutes - targetMinutes;
+
+  return diff >= -30 && diff <= 0;
+}
+
+// Ejemplo de uso
+const targetHour = 17; // Hora programada
+const targetMinute = 27; // Minuto programado
+
+if (shouldRunAlert(targetHour, targetMinute)) {
+ return true // Ejecuta la función si está dentro del rango
+  
+} else {
+  console.log('⏳ Fuera del rango de ejecución. No se ejecuta get_cars().');
+  return false
+}
