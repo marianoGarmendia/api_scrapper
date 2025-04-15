@@ -84,12 +84,17 @@ export const cargarAlertasYProgramar = async () => {
 
 // Función que valida si la hora actual está dentro de los 30 minutos previos a la hora programada
 function shouldRunAlert(targetHour, targetMinute) {
+  
   const now = new Date();
+const utcHours = now.getUTCHours() + 1; // Ajustar a la hora de Chile (UTC-3)
+const utcMinutes = now.getUTCMinutes();
+
+  console.log(`Hora actual en UTC: ${utcHours}:${utcMinutes < 10 ? '0' : ''}${utcMinutes}`);
   console.log("shouldRunAlert ejecutada");
   
-  console.log(`La hora actual es: ${now.getHours()}:${now.getMinutes()}`);
+ 
   
-  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  const nowMinutes = utcHours * 60 + utcMinutes;
   const targetMinutes = targetHour * 60 + targetMinute;
 
   const diff = nowMinutes - targetMinutes;
