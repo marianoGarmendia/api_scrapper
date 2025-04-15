@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import cron from "node-cron";
+
 import multer from "multer";
 import {
   getUrlCarByMarcaAndYear,
@@ -39,6 +39,13 @@ export const getUrl = async ({
   minPrice,
   startYear,
   endYear,
+}:{
+  modelo: string;
+  marca: string;
+  maxPrice: string;
+  minPrice: string;
+  startYear: string;
+  endYear: string;
 }) => {
   if (!modelo) {
     const urlCars = getUrlCarByMarcaAndYear({

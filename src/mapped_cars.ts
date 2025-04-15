@@ -1,6 +1,6 @@
 import { getUrlCarByYear } from "./utils/get_car_by_urls";
-import Playwright, { firefox } from "playwright";
-import fs from "fs/promises";
+import { firefox } from "playwright";
+import * as fs from "fs/promises";
 import {config} from "dotenv";
 config()
 
@@ -22,7 +22,7 @@ interface AutoData {
   // Agregá más campos si querés
 }
 
-export const scrapping_cars = async ({ url, maxPages }) => {
+export const scrapping_cars = async ({ url, maxPages }:{url:string, maxPages:number}) => {
   // Esto deberia ir en una funcion autoejecutable async para funcionar
   const allResults: any = [];
   let currentPage = 1;
@@ -50,7 +50,7 @@ export const scrapping_cars = async ({ url, maxPages }) => {
     await page.waitForSelector(".listing-item");
 
     const autosEnPagina = await page.evaluate(() => {
-      const cars = document.querySelectorAll(".listing-items .listing-item");
+      const cars = Array.from(document.querySelectorAll(".listing-items .listing-item"));
       let carsFound: any[] = [];
       for (let car of cars) {
         const description = car.querySelector(

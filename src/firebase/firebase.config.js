@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore , collection, addDoc, getDocs, query, where, doc, getDoc,updateDoc, deleteDoc,setDoc} from "firebase/firestore";
-import {config} from configDotenv
+import {config} from dotenv
 config()
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
