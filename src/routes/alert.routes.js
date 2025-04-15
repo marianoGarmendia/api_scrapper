@@ -63,8 +63,8 @@ alertsRouter.post("/schedule-alert", upload.none(), async (req, res) => {
       fechaInicio,
       id: id_alert, // Generar un ID único para la alerta
     });
-
-    const cronTime = `${minute} ${hour} * * *`;
+    const chile_hour = hour + 1
+    const cronTime = `${minute} ${chile_hour} * * *`;
     console.log("Programando cron para:", cronTime);
 
     const job = cron.schedule(cronTime, async () => {

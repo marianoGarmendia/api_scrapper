@@ -16,8 +16,9 @@ export const cargarAlertasYProgramar = async () => {
       if (!alerta.activa) return; // ignorar alertas desactivadas
 
       const { hora, minutos, nombreAlerta, marca, modelo, yearDesde, yearHasta, precioDesde, precioHasta } = alerta;
+      const chile_hour = hora + 1
 
-      const cronTime = `${minutos} ${hora} * * *`;
+      const cronTime = `${minutos} ${chile_hour} * * *`;
 
       console.log(`🕒 Reprogramando alerta '${nombreAlerta}' (${doc.id}) para ${cronTime}`);
 
