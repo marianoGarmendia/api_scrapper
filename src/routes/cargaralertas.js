@@ -97,14 +97,14 @@ function shouldRunAlert(targetHour, targetMinute) {
   return diff >= -30 && diff <= 0;
 }
 
-// Ejemplo de uso
-const targetHour = 17; // Hora programada
-const targetMinute = 27; // Minuto programado
+// // Ejemplo de uso
+// const targetHour = 17; // Hora programada
+// const targetMinute = 27; // Minuto programado
 
-if (shouldRunAlert(targetHour, targetMinute)) {
- return true // Ejecuta la función si está dentro del rango
+// if (shouldRunAlert(targetHour, targetMinute)) {
+//  return true // Ejecuta la función si está dentro del rango
   
-} else {
-  console.log('⏳ Fuera del rango de ejecución. No se ejecuta get_cars().');
-  return false
-}
+// } else {
+//   console.log('⏳ Fuera del rango de ejecución. No se ejecuta get_cars().');
+//   return false
+// }
