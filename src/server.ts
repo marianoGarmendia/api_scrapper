@@ -21,7 +21,7 @@ const upload = multer(); // usa memoria, no archivos
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://front-scrapper.onrender.com",
     credentials: true,
   })
 );
