@@ -97,8 +97,10 @@ app.get("/cars", async (req, res) => {
     });
     const cars = await scrapping_cars({ url: urlCars, maxPages: 3 });
     res.json(cars);
+    return
   } catch (error) {
     res.status(500).json({ message: "Error en el servidor" });
+    return
   }
 });
 
