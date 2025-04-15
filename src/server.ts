@@ -33,13 +33,17 @@ app.use(
 
 app.options('*', cors(corsOptions));
 
-app.options('*', cors(corsOptions));
+
 app.use(express.json());
-app.use("/management", managementVehiclesRouter);
+// app.use("/management", managementVehiclesRouter);
 app.use("/alerts", alertsRouter);
 cargarAlertasYProgramar()
 
 // app.use("/api", zonaPropRouter);
+
+app.get("/test", (req, res) => {
+  res.json({ message: "Todo ok con CORS" });
+});
 
 export const getUrl = async ({
   modelo,
