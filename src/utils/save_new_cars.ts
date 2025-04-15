@@ -1,7 +1,7 @@
 import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase.config";
 
-export const guardarAutosNuevos = async ({cars, alertaId}) => {
+export const guardarAutosNuevos = async ({cars, alertaId}:{cars:any, alertaId:any}) => {
   try {
     const carsRef = collection(firestore, "cars");
 
@@ -14,7 +14,7 @@ export const guardarAutosNuevos = async ({cars, alertaId}) => {
     });
 
     // 2. Filtrar solo los autos nuevos
-    const autosNuevos = cars.filter((car) => !idsExistentes.has(car.id));
+    const autosNuevos = cars.filter((car:any) => !idsExistentes.has(car.id));
 
     if (autosNuevos.length === 0) {
       console.log("📭 No hay autos nuevos para guardar.");
@@ -23,7 +23,7 @@ export const guardarAutosNuevos = async ({cars, alertaId}) => {
 
     // 3. Guardar autos nuevos
     await Promise.all(
-      autosNuevos.map((car) =>
+      autosNuevos.map((car:any) =>
         addDoc(carsRef, {
           ...car,
           alertaId,
