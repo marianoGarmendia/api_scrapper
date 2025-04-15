@@ -14,7 +14,7 @@ import { managementVehiclesRouter } from "./routes/management.vehicles.route.js"
 import { alertsRouter } from "./routes/alert.routes.js";
 // import { zonaPropRouter } from "./routes/zonaProp.route.js";
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 const upload = multer(); // usa memoria, no archivos
