@@ -1,9 +1,9 @@
 import { collection, getDocs } from "firebase/firestore";
-import { firestore } from "../firebase/firebase.config";
+import { firestore } from "../firebase/firebase.config.js";
 import cron from "node-cron";
 import { getUrl } from "../server"; // o donde tengas esta función
 import { scrapping_cars } from "../mapped_cars"; // tu función de scraping
-import {saveCars} from "../routes/management.vehicles.route"; // o donde tengas esta función
+import {saveCars} from "../routes/management.vehicles.route.js"; // o donde tengas esta función
 
 export const tasks = {}
 
