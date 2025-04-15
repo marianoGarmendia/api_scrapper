@@ -10,7 +10,7 @@ import {
   setDoc,
   updateDoc,
   deleteDoc
-} from "../firebase/firebase.config";
+} from "../firebase/firebase.config.js";
 import { Router } from "express";
 
 export const managementVehiclesRouter = Router();

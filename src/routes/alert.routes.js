@@ -9,13 +9,13 @@ import {
   doc,
   updateDoc,
   deleteDoc,
-} from "../firebase/firebase.config";
+} from "../firebase/firebase.config.js";
 import cron from "node-cron";
 // cambiar de lugar esta funcion
 import { getUrl } from "../server";
-import { scrapping_cars } from "../mapped_cars";
-import { tasks } from "./cargaralertas";
-import { saveCars } from "./management.vehicles.route";
+import { scrapping_cars } from "../mapped_cars.js";
+import { tasks } from "./cargaralertas.js";
+import { saveCars } from "./management.vehicles.route.js";
 import { Router } from "express";
 import multer from "multer";
 import { v4 as uuidv4 } from "uuid";

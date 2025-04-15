@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "zonaProps.js",
+  
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js"

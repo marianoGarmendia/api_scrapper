@@ -1,4 +1,4 @@
-import { getUrlCarByYear } from "./utils/get_car_by_urls";
+import { getUrlCarByYear } from "./utils/get_car_by_urls.js";
 import { firefox } from "playwright";
 import * as fs from "fs/promises";
 import {config} from "dotenv";

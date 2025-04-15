@@ -1,5 +1,5 @@
 import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
-import { firestore } from "../firebase/firebase.config";
+import { firestore } from "../firebase/firebase.config.js";
 
 export const guardarAutosNuevos = async ({cars, alertaId}:{cars:any, alertaId:any}) => {
   try {
