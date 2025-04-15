@@ -46,6 +46,7 @@ alertsRouter.post("/schedule-alert", upload.none(), async (req, res) => {
   // Validación básica
   if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
     res.status(400).json({ message: "Datos inválidos" });
+    return
   }
   try {
     const result = await addDoc(collection(firestore, "alerts"), {
@@ -109,8 +110,10 @@ alertsRouter.post("/schedule-alert", upload.none(), async (req, res) => {
     tasks[id_alert] = job; // Guardar la tarea en un objeto para poder acceder a ella después
 
     res.status(200).json({ message: "Alerta creada", id: result.id });
+    return
   } catch (error) {
     res.status(500).json({ message: error.message });
+    return
   }
 });
 
@@ -187,7 +190,8 @@ alertsRouter.get("/get-alerts-cars/:id", async (req, res) => {
 
     // Verificar si el documento existe
     if (!alertaDocSnap.exists()) {
-      return res.status(404).json({ message: "Alerta no encontrada" });
+      res.status(404).json({ message: "Alerta no encontrada" });
+      return
     }
 
     // Obtener los datos del documento
@@ -197,14 +201,16 @@ alertsRouter.get("/get-alerts-cars/:id", async (req, res) => {
     const cars_by_alert = await get_cars_by_alert({ id_alert: alertaData.id });
 
     // Construir y enviar la respuesta
-    return res.json({
+     res.json({
       id: alertaDocSnap.id,
       ...alertaData,
       cars: cars_by_alert,
     });
+    return
   } catch (error) {
     console.error("❌ Error al obtener la alerta:", error);
-    return res.status(500).json({ message: "Error del servidor" });
+     res.status(500).json({ message: "Error del servidor" });
+     return
   }
 });
 
@@ -221,7 +227,8 @@ alertsRouter.delete("/delete-alert/:id", async (req, res) => {
     const alertaDoc = snapshot.docs.find((doc) => doc.data().id === id);
 
     if (!alertaDoc.exists()) {
-      return res.status(404).json({ message: "Alerta no encontrada" });
+   res.status(404).json({ message: "Alerta no encontrada" });
+   return
     }
 
     // Detener y eliminar la tarea programada asociada
@@ -244,9 +251,12 @@ alertsRouter.delete("/delete-alert/:id", async (req, res) => {
         message: "Alerta eliminada con éxito",
         alert_name: alertaDoc.data().nombreAlerta,
       });
+
+      return
   } catch (error) {
     console.error("❌ Error al eliminar la alerta:", error);
     res.status(500).json({ message: "Error al eliminar la alerta" });
+    return
   }
 });
 
@@ -255,7 +265,9 @@ alertsRouter.get("/get-alerts", async (req, res) => {
     const snapshot = await getDocs(collection(firestore, "alerts"));
     const alerts = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     res.json({ alerts });
+    return
   } catch (error) {
     res.status(500).json({ message: error.message });
+    return
   }
 });
