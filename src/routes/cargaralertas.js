@@ -75,7 +75,7 @@ export const cargarAlertasYProgramar = async () => {
       });
 
       tasks[alerta.id] = job; // Guardar la tarea en un objeto para poder acceder a ella después
-      console.log("tasks:" + tasks);
+      console.dir(tasks, { depth: null });
       
     });
   } catch (error) {
@@ -91,9 +91,10 @@ function shouldRunAlert(targetHour, targetMinute) {
 const utcHours = now.getUTCHours() + 1; // Ajustar a la hora de Chile (UTC-3)
 const utcMinutes = now.getUTCMinutes();
 
-  console.log(`Hora actual en UTC: ${utcHours}:${utcMinutes < 10 ? '0' : ''}${utcMinutes}`);
+  // console.log(`Hora actual en UTC: ${utcHours}:${utcMinutes < 10 ? '0' : ''}${utcMinutes}`);
   console.log("shouldRunAlert ejecutada");
   
+ console.log("hora en UTC: ", utcHours, " minutos en UTC: ", utcMinutes);
  
   
   const nowMinutes = utcHours * 60 + utcMinutes;
