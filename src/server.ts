@@ -42,7 +42,6 @@ app.options('*', cors(corsOptions));
 app.use(express.json());
 // app.use("/management", managementVehiclesRouter);
 app.use("/alerts", alertsRouter);
-cargarAlertasYProgramar()
 
 // app.use("/api", zonaPropRouter);
 
@@ -152,3 +151,5 @@ app.get("/cars", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+cargarAlertasYProgramar()
