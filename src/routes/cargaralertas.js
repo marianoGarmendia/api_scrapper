@@ -16,13 +16,22 @@ export const cargarAlertasYProgramar = async () => {
       if (!alerta.activa) return; // ignorar alertas desactivadas
 
       const { hora, minutos, nombreAlerta, marca, modelo, yearDesde, yearHasta, precioDesde, precioHasta } = alerta;
-      const chile_hour = hora + 1
+      const chile_hour = hora - 1
 
       const cronTime = `${minutos} ${chile_hour} * * *`;
 
       const executeAlert = shouldRunAlert(hora, minutos) 
       if(executeAlert){
         const executeAlertFc = async () => {
+          const urlCars = await getUrl({
+            modelo,
+            marca,
+            maxPrice: precioHasta,
+            minPrice: precioDesde,
+            startYear: yearDesde,
+            endYear: yearHasta
+          });
+          
           const cars = await scrapping_cars({ url: urlCars, maxPages: 3 });
           console.log(`✅ ${cars.length} autos encontrados para '${nombreAlerta}'`);
           const saves = await saveCars({alertId: alerta.id, vehicles: cars});
@@ -105,7 +114,7 @@ const utcMinutes = now.getUTCMinutes();
   return diff >= -30 && diff <= 0;
 }
 
-cron.schedule('*/2 * * * *', () => {
+cron.schedule('*/3 * * * *', () => {
   console.log('Verificando alertas cada 2 minutos...');
   cargarAlertasYProgramar(); // Llama a la función para cargar y programar alertas
 
