@@ -88,7 +88,7 @@ export const cargarAlertasYProgramar = async () => {
 function shouldRunAlert(targetHour, targetMinute) {
   
   const now = new Date();
-const utcHours = now.getUTCHours() + 1; // Ajustar a la hora de Chile (UTC-3)
+const utcHours = now.getUTCHours() - 5; // Ajustar a la hora de Chile (UTC-3)
 const utcMinutes = now.getUTCMinutes();
 
   // console.log(`Hora actual en UTC: ${utcHours}:${utcMinutes < 10 ? '0' : ''}${utcMinutes}`);
