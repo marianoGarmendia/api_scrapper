@@ -40,7 +40,7 @@ app.options('*', cors(corsOptions));
 
 
 app.use(express.json());
-// app.use("/management", managementVehiclesRouter);
+app.use("/management", managementVehiclesRouter);
 app.use("/alerts", alertsRouter);
 
 // app.use("/api", zonaPropRouter);

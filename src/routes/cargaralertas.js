@@ -114,8 +114,8 @@ const utcMinutes = now.getUTCMinutes();
   return diff >= -30 && diff <= 0;
 }
 
-cron.schedule('*/3 * * * *', () => {
-  console.log('Verificando alertas cada 2 minutos...');
+cron.schedule('*/30 * * * *', () => {
+  console.log('Verificando alertas cada 30 minutos...');
   cargarAlertasYProgramar(); // Llama a la función para cargar y programar alertas
 
 });
