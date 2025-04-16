@@ -75,7 +75,7 @@ export const cargarAlertasYProgramar = async () => {
       });
 
       tasks[alerta.id] = job; // Guardar la tarea en un objeto para poder acceder a ella después
-      console.dir(tasks, { depth: null });
+      
       
     });
   } catch (error) {
