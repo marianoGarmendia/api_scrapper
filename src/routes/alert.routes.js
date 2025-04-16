@@ -108,7 +108,7 @@ alertsRouter.post("/schedule-alert", upload.none(), async (req, res) => {
     });
 
     tasks[id_alert] = job; // Guardar la tarea en un objeto para poder acceder a ella después
-
+    
     res.status(200).json({ message: "Alerta creada", id: result.id });
     return
   } catch (error) {

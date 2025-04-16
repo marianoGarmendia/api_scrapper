@@ -75,6 +75,8 @@ export const cargarAlertasYProgramar = async () => {
       });
 
       tasks[alerta.id] = job; // Guardar la tarea en un objeto para poder acceder a ella después
+      console.log("tasks:" + tasks);
+      
     });
   } catch (error) {
     console.error("❌ Error cargando alertas desde la base de datos:", error);
@@ -101,6 +103,12 @@ const utcMinutes = now.getUTCMinutes();
 
   return diff >= -30 && diff <= 0;
 }
+
+cron.schedule('*/2 * * * *', () => {
+  console.log('Verificando alertas cada 2 minutos...');
+  cargarAlertasYProgramar(); // Llama a la función para cargar y programar alertas
+
+});
 
 // // Ejemplo de uso
 // const targetHour = 17; // Hora programada
