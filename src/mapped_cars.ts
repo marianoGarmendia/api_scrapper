@@ -38,11 +38,18 @@ export const scrapping_cars = async ({ url, maxPages }:{url:string, maxPages:num
     },
   });
   // const sesion = browser.newBrowserCDPSession()
-  const context = await browser.newContext({ ignoreHTTPSErrors: true });
-  const page = await context.newPage();
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+  try {
+    console.log("Abriendo el navegador...");
+    console.log("URL a scrappear: ", url);
+    
+    
+    const context = await browser.newContext({ ignoreHTTPSErrors: true });
+    const page = await context.newPage();
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
 
-  // Esperar por el selector
+    
+
+    // Esperar por el selector
 
   while (nextPage) {
     console.log("Estoy en la pagina: ", currentPage);
@@ -119,6 +126,14 @@ export const scrapping_cars = async ({ url, maxPages }:{url:string, maxPages:num
 
   await browser.close();
   return allResults;
+    
+  } catch (error) {
+    console.error("Error en el scrapping:", error);
+    await browser.close();
+    return null;
+  }
+
+  
 };
 
 
