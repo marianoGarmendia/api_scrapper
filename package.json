@@ -4,11 +4,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "zonaProps.js",
-  
   "scripts": {
     "build": "tsc",
     "start": "npm run build && npx playwright install-deps  && node dist/server.js",
-      "postinstall": "npx playwright install"
+    "postinstall": "npx playwright install"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +30,7 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.52.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/multer": "^1.4.12",
