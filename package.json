@@ -7,7 +7,7 @@
   
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && npx playwright install --with-deps && node dist/server.js",
+    "start": "npm run build && npx playwright install-deps  && node dist/server.js",
       "postinstall": ""
   },
   "keywords": [],
