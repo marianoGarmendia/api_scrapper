@@ -16,7 +16,7 @@ export const cargarAlertasYProgramar = async () => {
       if (!alerta.activa) return; // ignorar alertas desactivadas
 
       const { hora, minutos, nombreAlerta, marca, modelo, yearDesde, yearHasta, precioDesde, precioHasta } = alerta;
-      const chile_hour = hora - 1
+      const chile_hour = hora === 0 ? 23 : hora - 1
 
       const cronTime = `${minutos} ${chile_hour} * * *`;
 
@@ -95,18 +95,12 @@ export const cargarAlertasYProgramar = async () => {
 
 // Función que valida si la hora actual está dentro de los 30 minutos previos a la hora programada
 function shouldRunAlert(targetHour, targetMinute) {
-  
-  const now = new Date();
-const utcHours = now.getUTCHours() - 4; // Ajustar a la hora de Chile (UTC-3)
-const utcMinutes = now.getUTCMinutes();
+  const ahora = new Date();
+  const opciones = { timeZone: 'America/Santiago', hour12: false };
+  const horaActual = new Intl.DateTimeFormat('es-CL', { ...opciones, hour: '2-digit' }).format(ahora);
+  const minutosActuales = new Intl.DateTimeFormat('es-CL', { ...opciones, minute: '2-digit' }).format(ahora);
 
-  // console.log(`Hora actual en UTC: ${utcHours}:${utcMinutes < 10 ? '0' : ''}${utcMinutes}`);
-  console.log("shouldRunAlert ejecutada");
-  
- console.log("hora en UTC: ", utcHours, " minutos en UTC: ", utcMinutes);
- 
-  
-  const nowMinutes = utcHours * 60 + utcMinutes;
+  const nowMinutes = parseInt(horaActual, 10) * 60 + parseInt(minutosActuales, 10);
   const targetMinutes = targetHour * 60 + targetMinute;
 
   const diff = nowMinutes - targetMinutes;
