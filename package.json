@@ -7,7 +7,6 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node dist/server.js"
-    
   },
   "keywords": [],
   "author": "",
@@ -16,7 +15,7 @@
     "@langchain/community": "^0.3.36",
     "@langchain/core": "^0.3.42",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "exceljs": "^4.4.0",
     "express": "^4.21.2",
     "firebase": "^11.5.0",
@@ -25,15 +24,19 @@
     "node-cron": "^3.0.3",
     "papaparse": "^5.5.2",
     "pdfkit": "^0.16.0",
-    "playwright": "^1.51.1",
+    "playwright": "1.51.1",
     "puppeteer": "^24.4.0",
     "uuid": "^11.1.0"
   },
+  "overrides": {
+    "playwright": "1.51.1"
+  },
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
     "@types/cors": "^2.8.17",
+    "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.1",
     "@types/multer": "^1.4.12",
+    "@types/node": "^22.14.1",
     "@types/node-cron": "^3.0.11",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"

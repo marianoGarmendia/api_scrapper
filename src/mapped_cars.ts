@@ -2,8 +2,7 @@ import { getUrlCarByYear } from "./utils/get_car_by_urls.js";
 import { firefox } from "playwright";
 import * as fs from "fs/promises";
 import dotenv from "dotenv";
-dotenv.config()
-
+dotenv.config();
 const proxies = {
   server: "brd.superproxy.io:33335",
   username: "brd-customer-hl_7fc79f9b-zone-lacalle_zone",
