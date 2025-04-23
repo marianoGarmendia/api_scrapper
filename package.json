@@ -6,8 +6,8 @@
   "main": "zonaProps.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && npx playwright install chromium && node dist/server.js",
-    "postinstall": "npx playwright install"
+    "start": "npm run build && node dist/server.js"
+    
   },
   "keywords": [],
   "author": "",
