@@ -7,6 +7,8 @@ RUN npm install
 
 COPY . .
 
-RUN npx playwright install
+# ✅ Instalá los navegadores correctamente con Playwright CLI del sistema
+RUN npx playwright install --with-deps
 
+# 🟢 Comando para arrancar el servidor
 CMD ["npm", "start"]

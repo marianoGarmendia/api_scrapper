@@ -41,6 +41,9 @@ export const scrapping_cars = async ({ url, maxPages }:{url:string, maxPages:num
     console.log("Abriendo el navegador...");
     console.log("URL a scrappear: ", url);
     
+    console.log(require('playwright')._chromium || require('playwright')._firefox);
+
+    
     
     const context = await browser.newContext({ ignoreHTTPSErrors: true });
     const page = await context.newPage();
